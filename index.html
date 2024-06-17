@@ -4,25 +4,109 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ClimaSeg: Sistema de Prevenção e Gerenciamento de Desastres Climáticos</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
-    <h1>Bem-vindo ao ClimaSeg</h1>
-    <p>O ClimaSeg é um sistema inovador projetado para prever, monitorar e mitigar os impactos de desastres climáticos.</p>
-    <h2>Principais Funcionalidades</h2>
-    <ul>
-        <li>Monitoramento Climático em Tempo Real</li>
-        <li>Sistema de Alertas e Notificações</li>
-        <li>Mapas Interativos e Visualizações Gráficas</li>
-        <li>Integração com Serviços de Mensagens (WhatsApp, E-mail, SMS)</li>
-        <li>Segurança e Proteção de Dados</li>
-    </ul>
-    <h2>Tecnologias Utilizadas</h2>
-    <ul>
-        <li>Microsoft Azure</li>
-        <li>Machine Learning</li>
-        <li>Banco de Dados na Nuvem</li>
-        <li>Azure IoT Hub</li>
-        <li>Azure Functions</li>
-    </ul>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="#">ClimaSeg</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="#funcionalidades">Funcionalidades</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#tecnologias">Tecnologias</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#contato">Contato</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    
+    <header class="jumbotron text-center">
+        <h1 class="display-4">Bem-vindo ao ClimaSeg</h1>
+        <p class="lead">Sistema inovador para prever, monitorar e mitigar os impactos de desastres climáticos.</p>
+        <a class="btn btn-primary btn-lg" href="#funcionalidades" role="button">Saiba Mais</a>
+    </header>
+    
+    <div class="container">
+        <section id="funcionalidades">
+            <h2 class="my-4">Principais Funcionalidades</h2>
+            <ul class="list-group">
+                <li class="list-group-item">Monitoramento Climático em Tempo Real</li>
+                <li class="list-group-item">Sistema de Alertas e Notificações</li>
+                <li class="list-group-item">Mapas Interativos e Visualizações Gráficas</li>
+                <li class="list-group-item">Integração com Serviços de Mensagens (WhatsApp, E-mail, SMS)</li>
+                <li class="list-group-item">Segurança e Proteção de Dados</li>
+            </ul>
+        </section>
+        
+        <section id="tecnologias">
+            <h2 class="my-4">Tecnologias Utilizadas</h2>
+            <div class="card-deck">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Microsoft Azure</h5>
+                        <p class="card-text">Plataforma de serviços em nuvem da Microsoft.</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Machine Learning</h5>
+                        <p class="card-text">Tecnologia para criação de modelos preditivos.</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Banco de Dados na Nuvem</h5>
+                        <p class="card-text">Armazenamento seguro e escalável de dados.</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Azure IoT Hub</h5>
+                        <p class="card-text">Conexão e monitoramento de dispositivos IoT.</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Azure Functions</h5>
+                        <p class="card-text">Execução de código sob demanda na nuvem.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="contato" class="my-4">
+            <h2>Contato</h2>
+            <p>Para mais informações sobre o ClimaSeg, entre em contato conosco.</p>
+            <form>
+                <div class="form-group">
+                    <label for="nome">Nome</label>
+                    <input type="text" class="form-control" id="nome" placeholder="Seu nome">
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" class="form-control" id="email" placeholder="Seu email">
+                </div>
+                <div class="form-group">
+                    <label for="mensagem">Mensagem</label>
+                    <textarea class="form-control" id="mensagem" rows="3" placeholder="Sua mensagem"></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">Enviar</button>
+            </form>
+        </section>
+    </div>
+    
+    <!-- Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>
+
