@@ -3,13 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ClimaSeg: Sistema de Prevenção e Gerenciamento de Desastres Climáticos</title>
+    <title>Panorama do Clima: Sistema de Prevenção e Gerenciamento de Desastres Climáticos</title>
     <!-- Bootstrap CSS -->
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .jumbotron {
+            background-color: #e3f2fd;
+        }
+    </style>
 </head>
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <a class="navbar-brand" href="#">ClimaSeg</a>
+        <a class="navbar-brand" href="#">Panorama do Clima</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -22,6 +27,9 @@
                     <a class="nav-link" href="#tecnologias">Tecnologias</a>
                 </li>
                 <li class="nav-item">
+                    <a class="nav-link" href="#clima">Clima</a>
+                </li>
+                <li class="nav-item">
                     <a class="nav-link" href="#contato">Contato</a>
                 </li>
             </ul>
@@ -29,7 +37,7 @@
     </nav>
     
     <header class="jumbotron text-center">
-        <h1 class="display-4">Bem-vindo ao ClimaSeg</h1>
+        <h1 class="display-4">Bem-vindo ao Panorama do Clima</h1>
         <p class="lead">Sistema inovador para prever, monitorar e mitigar os impactos de desastres climáticos.</p>
         <a class="btn btn-primary btn-lg" href="#funcionalidades" role="button">Saiba Mais</a>
     </header>
@@ -82,9 +90,18 @@
             </div>
         </section>
         
+        <section id="clima" class="my-4">
+            <h2>Panorama do Clima</h2>
+            <p>Veja o clima do dia, histórico de clima dos últimos dias e anos, e possibilidades de enchentes.</p>
+            <button class="btn btn-info" onclick="verClimaDia()">Ver Clima do Dia</button>
+            <button class="btn btn-secondary" onclick="verHistoricoClima()">Histórico de Clima</button>
+            <button class="btn btn-danger" onclick="verPossibilidadesEnchentes()">Possibilidades de Enchentes</button>
+            <div id="resultado" class="mt-4"></div>
+        </section>
+        
         <section id="contato" class="my-4">
             <h2>Contato</h2>
-            <p>Para mais informações sobre o ClimaSeg, entre em contato conosco.</p>
+            <p>Para mais informações sobre o Panorama do Clima, entre em contato conosco.</p>
             <form>
                 <div class="form-group">
                     <label for="nome">Nome</label>
@@ -107,6 +124,39 @@
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    
+    <!-- JavaScript para funcionalidades de clima -->
+    <script>
+        const dadosClima = [
+            { id: 1, dataHora: "2024-06-12 00:00:00", precipitacao: 3.7, nivelAgua: 3.3, vento: 28.9, pressao: 1017.0, umidade: 85.6, temperatura: 20.4, perigo: "Chuva Média" },
+            { id: 2, dataHora: "2024-06-12 01:00:00", precipitacao: 7.9, nivelAgua: 4.7, vento: 39.1, pressao: 1016.8, umidade: 61.1, temperatura: 34.3, perigo: "Perigo de Enchente" },
+            { id: 3, dataHora: "2024-06-12 02:00:00", precipitacao: 9.5, nivelAgua: 4.1, vento: 29.3, pressao: 985.5, umidade: 74.4, temperatura: 33.6, perigo: "Grande Perigo de Enchente" },
+            // ... continue com os outros dados
+        ];
+
+        function verClimaDia() {
+            const hoje = new Date().toISOString().split('T')[0];
+            const climaDia = dadosClima.filter(dado => dado.dataHora.startsWith(hoje));
+            mostrarResultados(climaDia, "Clima do Dia");
+        }
+
+        function verHistoricoClima() {
+            mostrarResultados(dadosClima, "Histórico de Clima");
+        }
+
+        function verPossibilidadesEnchentes() {
+            const enchentes = dadosClima.filter(dado => dado.perigo.includes("Enchente"));
+            mostrarResultados(enchentes, "Possibilidades de Enchentes");
+        }
+
+        function mostrarResultados(dados, titulo) {
+            let html = `<h3>${titulo}</h3><table class="table table-striped"><thead><tr><th>ID</th><th>Data e Hora</th><th>Precipitação (mm/h)</th><th>Nível de Água (m)</th><th>Velocidade do Vento (km/h)</th><th>Pressão Atmosférica (hPa)</th><th>Umidade Relativa (%)</th><th>Temperatura (°C)</th><th>Categoria de Perigo</th></tr></thead><tbody>`;
+            dados.forEach(dado => {
+                html += `<tr><td>${dado.id}</td><td>${dado.dataHora}</td><td>${dado.precipitacao}</td><td>${dado.nivelAgua}</td><td>${dado.vento}</td><td>${dado.pressao}</td><td>${dado.umidade}</td><td>${dado.temperatura}</td><td>${dado.perigo}</td></tr>`;
+            });
+            html += '</tbody></table>';
+            document.getElementById('resultado').innerHTML = html;
+        }
+    </script>
 </body>
 </html>
-
