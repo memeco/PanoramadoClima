@@ -37,7 +37,7 @@
     </nav>
     
     <header class="jumbotron text-center">
-        <h1 class="display-4">Bem-vindo ao Panorama do Clima</h1><br/>
+        <h1 class="display-4">Bem-vindo ao Panorama do Clima</h1>
         <img src="https://i.imgur.com/3awqOCr.jpeg" width="200px">
         <p class="lead">Sistema inovador para prever, monitorar e mitigar os impactos de desastres climáticos.</p>
         <a class="btn btn-primary btn-lg" href="#funcionalidades" role="button">Saiba Mais</a>
@@ -94,9 +94,25 @@
         <section id="clima" class="my-4">
             <h2>Panorama do Clima</h2>
             <p>Veja o clima do dia, histórico de clima dos últimos dias e anos, e possibilidades de enchentes.</p>
-            <button class="btn btn-info" onclick="verClimaDia()">Ver Clima do Dia</button>
-            <button class="btn btn-secondary" onclick="verHistoricoClima()">Histórico de Clima</button>
-            <button class="btn btn-danger" onclick="verPossibilidadesEnchentes()">Possibilidades de Enchentes</button>
+            <div class="form-row">
+                <div class="col-md-5 mb-3">
+                    <label for="dataInicio">Data Inicial</label>
+                    <input type="date" class="form-control" id="dataInicio">
+                </div>
+                <div class="col-md-5 mb-3">
+                    <label for="dataFim">Data Final</label>
+                    <input type="date" class="form-control" id="dataFim">
+                </div>
+                <div class="col-md-2 mb-3">
+                    <label>&nbsp;</label>
+                    <button class="btn btn-primary btn-block" onclick="aplicarFiltro()">Aplicar Filtro</button>
+                </div>
+            </div>
+            <div class="btn-group mb-4" role="group">
+                <button class="btn btn-info" onclick="verClimaDia()">Ver Clima do Dia</button>
+                <button class="btn btn-secondary" onclick="verHistoricoClima()">Histórico de Clima</button>
+                <button class="btn btn-danger" onclick="verPossibilidadesEnchentes()">Possibilidades de Enchentes</button>
+            </div>
             <div id="resultado" class="mt-4"></div>
         </section>
         
@@ -128,12 +144,27 @@
     
     <!-- JavaScript para funcionalidades de clima -->
     <script>
+        // Exemplo de dados climáticos simulados
         const dadosClima = [
             { id: 1, dataHora: "2024-06-12 00:00:00", precipitacao: 3.7, nivelAgua: 3.3, vento: 28.9, pressao: 1017.0, umidade: 85.6, temperatura: 20.4, perigo: "Chuva Média" },
             { id: 2, dataHora: "2024-06-12 01:00:00", precipitacao: 7.9, nivelAgua: 4.7, vento: 39.1, pressao: 1016.8, umidade: 61.1, temperatura: 34.3, perigo: "Perigo de Enchente" },
             { id: 3, dataHora: "2024-06-12 02:00:00", precipitacao: 9.5, nivelAgua: 4.1, vento: 29.3, pressao: 985.5, umidade: 74.4, temperatura: 33.6, perigo: "Grande Perigo de Enchente" },
             // ... continue com os outros dados
         ];
+
+        function aplicarFiltro() {
+            const dataInicio = document.getElementById('dataInicio').value;
+            const dataFim = document.getElementById('dataFim').value;
+            if (dataInicio && dataFim) {
+                const dadosFiltrados = dadosClima.filter(dado => {
+                    const dataDado = new Date(dado.dataHora).toISOString().split('T')[0];
+                    return dataDado >= dataInicio && dataDado <= dataFim;
+                });
+                mostrarResultados(dadosFiltrados, "Dados Filtrados");
+            } else {
+                alert("Por favor, selecione ambas as datas.");
+            }
+        }
 
         function verClimaDia() {
             const hoje = new Date().toISOString().split('T')[0];
